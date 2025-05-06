@@ -1,29 +1,52 @@
 <template>
     <div>ß545</div>
-    <div class="resume-container">
-
-        <ResumeHeader />
-
-        <EducationalExp />
-
-        <HonorsAwards />
-
-        <InternshipExp />
-
+    <div class="container">
+        <div class="preview-area">
+            <div class="action-bar">操作栏</div>
+            <div class="resume-container">
+                <ResumeHeader />
+                <EducationalExp />
+                <HonorsAwards />
+                <InternshipExp />
+            </div>
+        </div>
     </div>
-
 </template>
 <script setup lang="ts">
+import ResumeHeader from "./template/ResumeHeader.vue";
 import EducationalExp from "./template/EducationalExp.vue";
 import HonorsAwards from "./template/HonorsAwards.vue";
 import InternshipExp from "./template/InternshipExp.vue";
-import ResumeHeader from "./template/ResumeHeader.vue";
+import { useUserStore } from "@/stores/useUserStore";
+import { toRaw } from "vue";
+
+const userStore = useUserStore()
+
 
 
 </script>
 <style scoped>
+.preview-area {
+    width: 50vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.action-bar {
+    height: 50px;
+    background-color: #f0f0f0;
+    /* padding: 16px; */
+}
+
+
+
 .resume-container {
-    width: 100%;
+
     margin: 0 auto;
     padding: 24px;
     background-color: white;

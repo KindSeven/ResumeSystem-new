@@ -14,16 +14,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
 
-const personal = ref({
-    name: '张明华',
-    phone: '17612345678',
-    email: 'example@qq.com',
-    city: '北京',
-    jobTitle: '前端开发工程师',
-    photo: 'https://v0.dev/placeholder.svg?height=160&width=128',
-})
 </script>
 <style scoped>
 /* 头部样式 */
