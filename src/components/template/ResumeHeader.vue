@@ -1,11 +1,12 @@
 <template>
     <!-- 头部信息 -->
-    <div class="resume-header">
+    <div class="resume-header" :class="{ hoverd: isHovered }" @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false" @click="openEditor">
         <div class="personal-info">
-            <h1 class="name">张明华</h1>
+            <h1 class="name">{{ personal?.name }}</h1>
             <div class="contact-info">
-                <p>电话：17612345678 | 邮箱：example@qq.com | 现居城市：北京</p>
-                <p>求职意向：前端开发工程师</p>
+                <p>电话：{{ personal?.phone }} | 邮箱：{{ personal?.email }} | 现居城市：{{ personal?.location }}</p>
+                <p>求职意向：{{ personal?.objective }}</p>
             </div>
         </div>
         <div class="photo-container">
@@ -14,18 +15,38 @@
     </div>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue';
+
+interface ResumeDataPersonal {
+    name: string,
+    phone: string,
+    email: string,
+    location: string,
+    objective: string,
+}
+defineProps<{ personal: ResumeDataPersonal }>()
+const emit = defineEmits(['headerOpenEditor'])
+
+const isHovered = ref(false)
+const openEditor = () => {
+    emit('headerOpenEditor', '基本信息哦')
+}
 
 </script>
 <style scoped>
 /* 头部样式 */
 .resume-header {
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     margin-bottom: 32px;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    cursor: pointer;
+}
+
+.resume-header.hoverd {
+    background-color: #f0f0f0;
 }
 
 .personal-info {

@@ -1,10 +1,13 @@
 <template>
     <div>ß545</div>
     <div class="container">
+        <div class="editor-area" v-if="editorStore.isOpen">
+            <SideEditor :section="editorStore.currentSection" />
+        </div>
         <div class="preview-area">
             <div class="action-bar">操作栏</div>
             <div class="resume-container">
-                <ResumeHeader />
+                <ResumeHeader :personal="userStore.resumeData.personal" @headerOpenEditor="openEditor" />
                 <EducationalExp />
                 <HonorsAwards />
                 <InternshipExp />
@@ -12,29 +15,47 @@
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
+
+
 import ResumeHeader from "./template/ResumeHeader.vue";
 import EducationalExp from "./template/EducationalExp.vue";
 import HonorsAwards from "./template/HonorsAwards.vue";
 import InternshipExp from "./template/InternshipExp.vue";
 import { useUserStore } from "@/stores/useUserStore";
-import { toRaw } from "vue";
+import SideEditor from "./SideEditor.vue";
+import { useEditorStore } from "@/stores/useEditorStore";
+
 
 const userStore = useUserStore()
+const editorStore = useEditorStore()
 
+const openEditor = (nextSection: string) => {
+    if (editorStore.isOpen && editorStore.currentSection === nextSection) {
+        return
+    }
+    editorStore.closeEditor()
+    editorStore.openEditor(nextSection)
+}
 
 
 </script>
 <style scoped>
-.preview-area {
-    width: 50vw;
-    height: 100vh;
-}
-
 .container {
     display: flex;
     justify-content: center;
 
+}
+
+.editor-area {
+    width: 40vw;
+    background-color: #f0f0f0;
+}
+
+.preview-area {
+    width: 50vw;
+    height: 100vh;
 }
 
 .action-bar {
