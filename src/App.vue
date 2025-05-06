@@ -13,11 +13,16 @@ import { RouterLink, RouterView } from 'vue-router'
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  min-width: 100vw;
+  min-height: 100vh;
+
 }
 
 #app {
+  min-width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
 }
 </style>
