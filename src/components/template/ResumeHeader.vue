@@ -29,7 +29,7 @@ const emit = defineEmits(['headerOpenEditor'])
 
 const isHovered = ref(false)
 const openEditor = () => {
-    emit('headerOpenEditor', '基本信息哦')
+    emit('headerOpenEditor', 'personal', '基本信息')
 }
 
 </script>

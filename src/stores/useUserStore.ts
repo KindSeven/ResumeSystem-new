@@ -1,5 +1,18 @@
 import { defineStore } from 'pinia'
 
+interface PersonalInfo {
+  // [key: string]: string
+  name: string | null
+  phone: string | null
+  email: string | null
+  location: string | null
+  objective: string | null
+}
+
+// interface UserResumeData {
+//   personal: PersonalInfo
+// }
+
 export const useUserStore = defineStore('userStore', {
   state: () => ({
     showEditor: false,
@@ -84,4 +97,13 @@ export const useUserStore = defineStore('userStore', {
     },
     resizeObserver: null,
   }),
+  actions: {
+    updatePersonalInfo(key: string, value: string) {
+      this.resumeData.personal[key] = value
+    },
+
+    updatePersonalInfoAll(info: PersonalInfo) {
+      this.resumeData.personal = info
+    },
+  },
 })
